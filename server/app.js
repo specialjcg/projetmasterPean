@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var todosRouter = require('./routes/todos');
+var todosRouter = require('./routes/products');
 var app = express();
 const mongoose = require('mongoose');
 
@@ -15,7 +15,7 @@ const user = process.env.MONGO_USER;
 const mongoPort = process.env.MONGO_PORT || 27017;
 const mongoHost = process.env.MONGO_HOST || 'localhost';
 const auth = user ? `${user}:${process.env.MONGO_PASS}@` : '';
-const DB_STRING = `mongodb://${auth}${mongoHost}:${mongoPort}/todos`;
+const DB_STRING = `mongodb://${auth}${mongoHost}:${mongoPort}/products`;
 
 console.log(`Running node ${process.version}...`);
 console.log(`Connecting to DB... ${DB_STRING}`);
@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/todos', todosRouter);
+app.use('/api/products', todosRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

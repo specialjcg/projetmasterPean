@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const Todo = require('../models/todo');
+const Product = require('../models/product');
 
 /* GET /api/todos */
 router.get('/', async (req, res) => {
   try {
-    const list = await Todo.find(req.query);
+    const list = await Product.find(req.query);
     res.json(list);
   } catch (error) {
     res.status(500).json({ error });
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 /* POST /api/todos */
 router.post('/', async (req, res) => {
   try {
-    const todo = await Todo.create(req.body);
+    const todo = await Product.create(req.body);
     res.json(todo);
   } catch (error) {
     res.status(500).json({ error });
@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const options = { new: true };
-    const todo = await Todo.findByIdAndUpdate(req.params.id, req.body, options);
+    const todo = await Product.findByIdAndUpdate(req.params.id, req.body, options);
     res.json(todo);
   } catch (error) {
     res.json(500, { error });
@@ -40,7 +40,7 @@ router.put('/:id', async (req, res) => {
 /* DELETE /api/todos */
 router.delete('/:id', async (req, res) => {
   try {
-    const todo = await Todo.findByIdAndDelete(req.params.id);
+    const todo = await Product.findByIdAndDelete(req.params.id);
     res.json(todo);
   } catch (error) {
     res.status(500).json({ error });
@@ -52,7 +52,7 @@ router.delete('/:id', async (req, res) => {
 /* DELETE /api/todos */
 router.delete('/', async (req, res) => {
   try {
-    const todo = await Todo.deleteMany(req.body);
+    const todo = await Product.deleteMany(req.body);
     res.json(todo);
   } catch (error) {
     res.status(500).json({ error });
