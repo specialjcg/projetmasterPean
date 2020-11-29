@@ -25,8 +25,8 @@ export class ProductService {
   }
 
 
-  delete(selected: Product): Observable<any> {
-    return this.http.delete(`${API}/${selected._id}`);
+  delete(selected: string): Observable<any> {
+    return this.http.delete(`${API}/${selected}`);
   }
 
 

@@ -1,0 +1,46 @@
+<mat-card class="my-card">
+  <mat-card-header>
+    <mat-card-title>Edit Product</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="my-form">
+      <mat-tab-group>
+        <mat-tab label="General Information" class="my-tab">
+          <table style="width: 100%" cellspacing="10">
+            <tr>
+              <td>
+                <mat-form-field>
+                  <mat-label>Name</mat-label>
+                  <input matInput placeholder="Name" [(ngModel)]="this.newProduct.name" name="name" required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field>
+                  <mat-label>Formule</mat-label>
+                  <input matInput placeholder="formule" [(ngModel)]="this.newProduct.job" name="formule" required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                  <img [src]=base64ToDataUri(this.newProduct.imageBase64)   style="max-width:200px;max-height:200px"/>
+              </td>
+            </tr>
+          </table>
+        </mat-tab>
+
+      </mat-tab-group>
+
+
+
+
+
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="modifyCustomer()" color="primary">Modify</button>
+  </mat-card-actions>
+</mat-card>
+

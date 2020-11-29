@@ -11,10 +11,12 @@ import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {MyMaterialModule} from './material.module';
 import {HttpClientModule} from '@angular/common/http';
+import { ProductEditionComponent } from './product-edition/product-edition.component';
 
 const appRoutes: Routes = [
   { path: 'product-list', component: ProductListComponent },
   { path: 'product-create',      component: ProductCreateComponent },
+  { path: 'product-edition/:id',      component: ProductEditionComponent },
   {
     path: 'login',
     component: LoginComponent
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
     ErrorComponent,
     ProductCreateComponent,
     ProductListComponent,
-    LoginComponent
+    LoginComponent,
+    ProductEditionComponent
   ],
   imports: [
     BrowserModule,
