@@ -1,5 +1,9 @@
 {
-  "/api": {
+  "/products/*": {
+    "target": "http://server:3000",
+    "secure": false
+  },
+  "/orders/*": {
     "target": "http://server:3000",
     "secure": false
   }

@@ -5,25 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var todosRouter = require('./routes/products');
+var orderRouter = require('./routes/orders');
 var app = express();
-const mongoose = require('mongoose');
 
-// connect to db
-const user = process.env.MONGO_USER;
-const mongoPort = process.env.MONGO_PORT || 27017;
-const mongoHost = process.env.MONGO_HOST || 'localhost';
-const auth = user ? `${user}:${process.env.MONGO_PASS}@` : '';
-const DB_STRING = `mongodb://${auth}${mongoHost}:${mongoPort}/products`;
-
+const cors = require('cors');
 console.log(`Running node ${process.version}...`);
-console.log(`Connecting to DB... ${DB_STRING}`);
+app.use(cors())
 
-const config = { useNewUrlParser: true, useUnifiedTopology: true};
-mongoose.connect(DB_STRING, config)
-    .then(() => console.log(`Connected!`))
-    .catch(console.error);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,22 +25,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/api/products', todosRouter);
+app.use('/products', todosRouter);
+app.use('/orders', orderRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
 module.exports = app;

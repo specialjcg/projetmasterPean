@@ -22,14 +22,23 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - mongo
+      - postgres
     environment:
-      MONGO_HOST: mongo
+      DB_SCHEMA: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: postgres
     command: >
       sh -c "npm i -g nodemon && npm install && nodemon ./bin/www"
 
-  mongo:
-    image: mongo
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
-        - "27017:27017"
+      - '5432:5432'
+    volumes:
+      - ./product-db:/var/lib/postgresql/data
+
 

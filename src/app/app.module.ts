@@ -12,9 +12,11 @@ import {FormsModule} from '@angular/forms';
 import {MyMaterialModule} from './material.module';
 import {HttpClientModule} from '@angular/common/http';
 import { ProductEditionComponent } from './product-edition/product-edition.component';
+import {OrderProductComponent} from './order-product/order-product.component';
 
 const appRoutes: Routes = [
   { path: 'product-list', component: ProductListComponent },
+  { path: 'product-order', component: OrderProductComponent },
   { path: 'product-create',      component: ProductCreateComponent },
   { path: 'product-edition/:id',      component: ProductEditionComponent },
   {
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
     ProductCreateComponent,
     ProductListComponent,
     LoginComponent,
-    ProductEditionComponent
+    ProductEditionComponent,
+    OrderProductComponent
   ],
   imports: [
     BrowserModule,
