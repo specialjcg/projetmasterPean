@@ -11,7 +11,15 @@ router.get("/all", function(req, res) {
       res.status(500).send(JSON.stringify(err));
     });
 });
-
+router.get("/getMaxId", function(req, res) {
+  db.Order.findAll()
+    .then( orders => {
+      res.status(200).send(JSON.stringify(orders));
+    })
+    .catch( err => {
+      res.status(500).send(JSON.stringify(err));
+    });
+});
 router.get("/:id", function(req, res) {
   db.Order.findByPk(req.params.id)
     .then( order => {

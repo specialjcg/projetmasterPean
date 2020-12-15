@@ -1,9 +1,24 @@
 <mat-toolbar color="primary" class="fixed-header">
+  <svg viewBox="0 0 960 100">
+    <symbol id="s-text">
+      <text text-anchor="middle" x="50%" y="80%">LYON</text>
+    </symbol>
+
+    <g class = "g-ants">
+      <use xlink:href="#s-text" class="text-copy"></use>
+      <use xlink:href="#s-text" class="text-copy"></use>
+      <use xlink:href="#s-text" class="text-copy"></use>
+      <use xlink:href="#s-text" class="text-copy"></use>
+      <use xlink:href="#s-text" class="text-copy"></use>
+    </g>
+  </svg>
   <mat-toolbar-row>
+
     <span><img src="./assets/logo.png" style="width:50px;"></span>
     <a mat-button routerLink="/product-order" routerLinkActive="active">Order</a>
     <a mat-button routerLink="/product-list" routerLinkActive="active">Products</a>
     <a mat-button routerLink="/product-create">Create Products</a>
+    <a mat-button routerLink="/order-create">Create Orders</a>
     <a mat-button routerLink="/login">Login</a>
 
 

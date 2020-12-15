@@ -44,13 +44,13 @@ export class ProductEditionComponent implements OnInit {
     return this.productService
       .get()
       .subscribe((todos: Product[]) => {
-        const id = parseInt(this.route.snapshot.paramMap.get('id'), 0);
+        const id = parseInt(this.route.snapshot.paramMap.get('id'), 0) - 1;
 
         this.products = todos;
-        this.newProduct.id = this.products[id - 1].id;
-        this.newProduct.name = this.products[id - 1].name;
-        this.newProduct.job = this.products[id - 1].job;
-        this.newProduct.imageBase64 = this.products[id - 1].imageBase64;
+        this.newProduct.id = this.products[id].id;
+        this.newProduct.name = this.products[id].name;
+        this.newProduct.job = this.products[id].job;
+        this.newProduct.imageBase64 = this.products[id].imageBase64;
       });
   }
 
