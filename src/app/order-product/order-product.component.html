@@ -1,0 +1,60 @@
+<div class="mat-elevation-z8">
+  <mat-spinner [style.display]="loading ? 'block' : 'none'"></mat-spinner>
+
+  <mat-table [style.display]="loading === false ? 'block' : 'none'" #table [dataSource]="this.orders" [trackBy]="trackByFn" matSort>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> OrderId</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+
+
+
+
+    <ng-container matColumnDef="id_product">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{this.products[element.id_Product-1].name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Quantity">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.quantity}}
+       </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> State</mat-header-cell>
+      <mat-cell *matCellDef="let element" >
+      {{element.state}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="updated_at">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> updated_at</mat-header-cell>
+      <mat-cell *matCellDef="let element" >
+      {{element.updated_at | date :'short'}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="finish_at">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> finish_at</mat-header-cell>
+      <mat-cell *matCellDef="let element" >
+     {{element.finish_at | date :'short'}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="operations">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> operations</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="deleteCustomer(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-button color="primary" (click)="editCustomer(element.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  <mat-paginator #paginator [style.display]="loading === false ? 'block' : 'none'" [pageSize]="5"></mat-paginator>
+</div>

@@ -1,0 +1,48 @@
+<div class="mat-elevation-z8">
+  <mat-spinner [style.display]="loading ? 'block' : 'none'"></mat-spinner>
+
+  <mat-table [style.display]="loading === false ? 'block' : 'none'" #table [dataSource]="this.products" [trackBy]="trackByFn" matSort>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ProductId</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="formule">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> formule</mat-header-cell>
+      <mat-cell *matCellDef="let element"> <a href={{element.job}} target="_blank" rel="noopener">
+        External Link
+      </a></mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="image">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Image</mat-header-cell>
+      <mat-cell *matCellDef="let element;let i=index" >
+        <img [src]=base64ToDataUri(element.imageBase64)   style="max-width:100px;max-height:100px"/>
+          <input id="file" class="inputfile" (change)="this.handleInputChange($event);" name="imageUrl" type="file" accept="image/*" />
+        &nbsp;<label for="file" >
+            <mat-icon (click)="getRecord(element.id)">cloud_download</mat-icon></label>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="operations">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Operations</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="deleteCustomer(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-button color="primary" (click)="editCustomer(element.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  <mat-paginator #paginator [style.display]="loading === false ? 'block' : 'none'" [pageSize]="5"></mat-paginator>
+</div>
