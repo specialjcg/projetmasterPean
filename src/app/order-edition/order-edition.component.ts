@@ -33,7 +33,7 @@ export class OrderEditionComponent implements OnInit {
               private orderService: OrdersService,
               private productService: ProductService, private router: Router, private route: ActivatedRoute) {
     const time = new Date(Date.now());
-    this.newOrder = {id: 0, id_Product: 0, state: '', quantity: 0, updated_at: time, finish_at: time}; // clear input form value
+    this.newOrder = {id: 0, id_Product: 0, id_lyon: 1, state: '', quantity: 0, updated_at: time, finish_at: time}; // clear input form value
   }
 
   modifyOrder(): void {
@@ -42,7 +42,7 @@ export class OrderEditionComponent implements OnInit {
       .subscribe(() => {
         const time = new Date(Date.now());
         this.selected = '';
-        this.newOrder = {id: 0, id_Product: 0, state: '', quantity: 0, updated_at: time, finish_at: time}; // clear input form value
+        this.newOrder = {id: 0, id_Product: 0, id_lyon: 1, state: '', quantity: 0, updated_at: time, finish_at: time}; // clear input form value
       });
     this.router.navigate(['/product-order']);
   }
@@ -63,11 +63,15 @@ export class OrderEditionComponent implements OnInit {
     return this.orderService
       .get()
       .subscribe((todos: Order[]) => {
+
+
         const id = parseInt(this.route.snapshot.paramMap.get('id'), 0);
 
         this.orders = todos;
+        this.orders = todos.sort((a, b) => a.id - b.id);
         this.newOrder.id = this.orders[id].id;
         this.newOrder.id_Product = this.orders[id].id_Product;
+        this.newOrder.id_lyon = 1;
         this.newOrder.quantity = this.orders[id].quantity;
         this.newOrder.state = this.orders[id].state;
         this.newOrder.updated_at = this.orders[id].updated_at;

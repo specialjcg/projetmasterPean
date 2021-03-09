@@ -20,8 +20,12 @@ const Product = sequelize.define('Product', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-
+  }
+  ,
+  id_lyon: {
+  type: Sequelize.INTEGER,
+    allowNull: false
+},
 
   job: {
     type: Sequelize.STRING,
@@ -39,6 +43,10 @@ const Order = sequelize.define('Order', {
     primaryKey: true
   },
   id_Product: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  id_lyon: {
     type: Sequelize.INTEGER,
     allowNull: false
   },

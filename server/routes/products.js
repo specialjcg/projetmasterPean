@@ -25,6 +25,7 @@ router.post("/", function(req, res) {
   db.Product.create({
   name: req.body.name,
     job: req.body.job,
+    id_lyon: 1,
     imageBase64:req.body.imageBase64,
     createdAt:req.body.createdAt,
     updateAt:req.body.updatedAt,
@@ -38,6 +39,7 @@ router.put("/:id", function (req, res, next) {
   db.Product.update(
     {name: req.body.name,
       job: req.body.job,
+      id_lyon: 1,
       imageBase64:req.body.imageBase64,
       createdAt:req.body.createdAt,
       updateAt:req.body.updatedAt},

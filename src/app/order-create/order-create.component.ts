@@ -40,13 +40,13 @@ export class OrderCreateComponent implements OnInit {
       .add(this.newOrder)
       .subscribe(() => {
         const time = new Date(Date.now());
-        this.newOrder = {id: 0, id_Product: 0, state: '', quantity: 0, updated_at: time, finish_at: time}; // clear input form value
+        this.newOrder = {id: 0, id_Product: 0, id_lyon: 1, state: '', quantity: 0, updated_at: time, finish_at: time}; // clear input form value
       });
   }
 
   ngOnInit() {
     const time = new Date(Date.now());
-    this.newOrder = {id: 0, id_Product: 0, state: '', quantity: 0, updated_at: time, finish_at: time}; // clear input form value
+    this.newOrder = {id: 0, id_Product: 0, id_lyon: 1, state: '', quantity: 0, updated_at: time, finish_at: time}; // clear input form value
     this.toogle = this.newOrder.state;
     this.getListOrder();
     this.getListProduct();

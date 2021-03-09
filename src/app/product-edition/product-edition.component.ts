@@ -21,7 +21,7 @@ export class ProductEditionComponent implements OnInit {
 
   constructor(private http: HttpClient, private productService: ProductService, private route: ActivatedRoute) {
     const time = new Date(Date.now());
-    this.newProduct = {id: 0, name: '', job: '', imageBase64: '', updateAt: time, createdAt: time};
+    this.newProduct = {id: 0, name: '', job: '',  id_lyon: 1,imageBase64: '', updateAt: time, createdAt: time};
   }
 
   modifyCustomer(): void {
@@ -29,7 +29,7 @@ export class ProductEditionComponent implements OnInit {
       .put(this.newProduct)
       .subscribe(() => {
         const time = new Date(Date.now());
-        this.newProduct = {id: 0, name: '', job: '', imageBase64: '', updateAt: time, createdAt: time}; // clear input form value
+        this.newProduct = {id: 0, name: '', job: '',  id_lyon: 1,imageBase64: '', updateAt: time, createdAt: time}; // clear input form value
         this.image = '';
       });
   }
@@ -46,10 +46,12 @@ export class ProductEditionComponent implements OnInit {
       .subscribe((todos: Product[]) => {
         const id = parseInt(this.route.snapshot.paramMap.get('id'), 0) - 1;
 
-        this.products = todos;
+        this.products = todos.sort((a, b) => a.id - b.id);
+
         this.newProduct.id = this.products[id].id;
         this.newProduct.name = this.products[id].name;
         this.newProduct.job = this.products[id].job;
+        this.newProduct.id_lyon = 1;
         this.newProduct.imageBase64 = this.products[id].imageBase64;
       });
   }

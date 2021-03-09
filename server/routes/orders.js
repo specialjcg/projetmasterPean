@@ -33,6 +33,7 @@ router.post("/", function(req, res) {
   db.Order.create({
     id:req.body.id,
   id_Product: req.body.id_Product,
+    id_lyon: 1,
     quantity: req.body.quantity,
     state:req.body.state,
     updated_at:req.body.updated_at,
@@ -46,6 +47,7 @@ router.post("/", function(req, res) {
 router.put("/:id", function (req, res, next) {
   db.Order.update(
     {id_Product: req.body.id_Product,
+      id_lyon: 1,
       quantity: req.body.quantity,
       state:req.body.state,
       updated_at:req.body.updated_at,

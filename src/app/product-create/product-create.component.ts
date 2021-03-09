@@ -30,7 +30,7 @@ export class ProductCreateComponent implements OnInit {
       .add(this.newProduct)
       .subscribe(() => {
         const time = new Date(Date.now());
-        this.newProduct = {id: 0, name: '', job: '', imageBase64: '', updateAt: time, createdAt: time}; // clear input form value
+        this.newProduct = {id: 0, name: '', job: '', id_lyon: 1, imageBase64: '', updateAt: time, createdAt: time}; // clear input form value
         this.image = '';
       });
   }
@@ -47,7 +47,7 @@ export class ProductCreateComponent implements OnInit {
   ngOnInit() {
     this.getTodos();
     const time = new Date(Date.now());
-    this.newProduct = {id: 0, name: '', job: '', imageBase64: '', updateAt: time, createdAt: time};
+    this.newProduct = {id: 0, name: '', job: '',  id_lyon: 1,imageBase64: '', updateAt: time, createdAt: time};
   }
 
 }
